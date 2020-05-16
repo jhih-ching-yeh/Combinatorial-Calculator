@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Jhih- Ching Yeh Combinatorial Calculator</title>
+        <style>
+            body{
+                font-family: Times;
+            }
+            table{ 
+                 text-align: center;border-collapse: collapse;  
+            }
+            th, td{ 
+                padding: 5px;
+                border: 1px solid #dddddd;
+            }
+            input[type="number"]{
+                width: 60px;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <section>
+            
+            <br / >
+            <br / >
+            <br / >
+            <br / >
+            <header style="color: #6D00BD;font-size: 30px;text-align: center;font-family: cursive">
+                <font face="微軟正黑體"><b>Combinatorial Calculator</b></font><br />
+            </header> 
+            <h1 style="color: #4A0080;font-size: 20px;text-align: center">
+                <font face="微軟正黑體">Combinations and Permutations</font>
+                <br />
+                <br / >
+            </h1>
+            
+
+            <main>            
+                <!--一般作業 n.r-->
+                <table align="center" style="border:3px #cccccc solid;cellpadding=10;border='1'">
+                
+                <tr bgcolor="#cccccc";>
+                <th>Formula</th>
+                <th><label>n = <input type="number" id="n" value="7" min="0"></label>
+                    <label>r = <input type="number" id="r" value="3" min="0"></label></th>
+                <th><button type="button" onclick="computeAll()">Compute All</button></th>
+                <th>Order relevant</th>
+                <th>Repetition</th> 
+                <th>Memo</th>        
+                </tr>
+            
+                <tr>
+                <td><label>P(n, r)</label></td>
+                <td><span id="resPermutation"></span></td>
+                <td><button type="button" onclick="clickPerm()">Permutation</button></td>
+                <td>yes</td>
+                <td>no</td>
+                <td align="left"># Permutations of size r from n distinct objects</td>
+                </tr>
+
+                <tr>
+                <td><label>C(n, r)</label></td>
+                <td><span id="resCombination"></span></td>
+                <td><button type="button" onclick="clickComb()()">Combination</button></td>
+                <td>no</td>
+                <td>no</td>
+                <td align="left"># Selections/Combinations of size r from n distinct objects</td>
+                </tr>
+                    
+                <tr>
+                <td><label>n<sup>r</label></td>
+                <td><span id="resArrangement"></span></td>
+                <td><button type="button" onclick="clickArra()">Arrangement with repetition</button></td>
+                <td>yes</td>
+                <td>yes</td>
+                <td align="left"># Arrangements with repetition of size r from n distinct objects</td>
+                </tr>
+
+                <tr>
+                <td><label>C(r+n-1, r)	</label></td>
+                <td><span id="resSelectrofn"></span></td>
+                <td><button type="button" onclick="clickSele()">Selection with repetition</button></td>
+                <td>no</td>
+                <td>yes</td>
+                <td align="left"># Selections with repetition of size r from n distinct objects</td>
+                </tr>
+                    
+                <!--額外作業-->
+                <tr>
+                <td><label>Catalan Number</label></td>
+                <td><span id="resCatalan"></span></td>
+                <td><button type="button" onclick="clickCatalan()">Catalan Number</button></td>                
+                <td colspan="2"><a href="https://www.youtube.com/watch?v=xD_-A4vbTdE"> 10min Teaching Video</a></td>
+                <td align="left"># 	C<span style="font-size:x-small;">n</span> = C(2n, n)/n+1 </td>
+                </tr>
+
+                <tr>
+                <td><label>Triangular Number</label></td>
+                <td><span id="resTriangular"></span></td>
+                <td><button type="button" onclick="clickTriangular()()">Triangular Number</button></td>
+                <td colspan="2"><a href="https://www.youtube.com/watch?v=8C0n3V5jgt8"> 10min Teaching Video</a></td>
+                <td align="left"># T<span style="font-size:x-small;">n</span> = n(n+1)/2</td>
+                </tr> 
+                    
+                <tr>
+                <td><label>Harmonic Number</label></td>
+                <td><span id="resHarmonic"></span></td>
+                <td><button type="button" onclick="clickHarmonic()">Harmonic Number</button></td>                
+                <td colspan="2"><a href="https://www.youtube.com/watch?v=Dgcoa2yAUfw"> 10min Teaching Video</a></td>
+                <td align="left"># 	H<span style="font-size:x-small;">n</span> =  H<span style="font-size:x-small;">n-1</span> + 1/n</td>
+                </tr>
+
+                <tr>
+                <td><label>Fibonacci Number</label></td>
+                <td><span id="resFibonacci"></span></td>
+                <td><button type="button" onclick="clickFibonacci()">Fibonacci Number</button></td>                
+                <td colspan="2"><a href="https://www.youtube.com/watch?v=JPFYhyFnxVw"> 10min Teaching Video</a></td>
+                <td align="left"># F<span style="font-size:x-small;">n</span> = F<span style="font-size:x-small;">n-1</span> + F<span style="font-size:x-small;">n-2</span> </td>
+                </tr>
+    
+                <tr>
+                <td><label>Lucas Number</label></td>
+                <td><span id="resLucas"></span></td>
+                <td><button type="button" onclick="clickLucas()">Lucas Number</button></td>                
+                <td colspan="2"><a href="https://www.youtube.com/watch?v=RRNQAaTVa_A"> 10min Teaching Video</a></td>
+                <td align="left"># L<span style="font-size:x-small;">0</span> = 2; L<span style="font-size:x-small;">1</span> = 1; L<span style="font-size:x-small;">n</span> = L<span style="font-size:x-small;">n-1</span> + L<span style="font-size:x-small;">n-2</span> </td>
+                </tr>
+                    
+                <tr>
+                <td><label>Eulerian Number</label></td>
+                <td><span id="resEulerian"></span></td>
+                <td><button type="button" onclick="clickEulerian()">Eulerian Number</button></td>                
+                <td colspan="2"><a href="https://www.youtube.com/watch?v=b30JcFo3KJ4"> 10min Teaching Video</a></td>
+                <td align="left"># A(n, r) = (n-r)A(n-1, r-1) + (r+1) * A(n-1, r)</td>
+                </tr>
+            
+                <tr>
+                <td><label>Stirling Number of the Second Kind</label></td>
+                <td><span id="resStirling"></span></td>
+                <td><button type="button" onclick="clickStirling()">Stirling Number of the Second Kind</button></td>                
+                <td colspan="2"><a href="https://www.youtube.com/watch?v=Ngj48yeoNZU"> 10min Teaching Video</a></td>
+                <td align="left">#  S(n, r) = S(n-1, r-1) + r * S(n-1, r)</td>
+                </tr>
+                </table>
+                
+                
+            </main>
+                
+            <hr />
+            <!--其他資料-->
+            <footer>
+                <ul>
+                    <li>
+                        <a href="https://sites.google.com/view/sjdmath/exercises/combinatorial-calculator?authuser=0&fbclid=IwAR32FbLT3MvvXWmDL6kPvLA98Mkb8xjW-s5n3ZUkOP3fUwHS9q-zGU535-g"> Teacher's Combinatorial Calculator</a>
+                    </li>
+                        
+                    <li>
+                        <a href="mailto:ninna0979666204@gmail.com?subject=我有一個問題">歡迎來信</a>
+                    </li>
+                    <li>
+                        葉之晴 Jhih-Ching Yeh
+                     </li>
+                </ul>                    
+            </footer>
+            
+            
+            <!--一般作業 n.r之程式碼-->
+            <script>
+                //階層
+                function Factorial(n){ 
+                    fact = 1;
+                    for (i=2; i<=n; i++)
+                        fact *= i;
+                    return fact;
+                }
+
+                
+                //P(n, r)
+                function Perm(n, r){
+                    perm = n;
+                    for (i=n-1; i>n-r; i--)
+                        perm *= i;
+                    return perm;
+                }
+
+                //C(n, r)
+                function Comb(n, r){
+                    return Perm(n, r) / Factorial(r);
+                } 
+                
+                //--額外作業--
+                //Catalan Number
+                function Catalan(n, r){
+                    return Comb(2*n, n)/ (n+1);
+                }
+                
+                //Triangular Number
+                function Triangular(n, r){
+                    return (n+1)*n/2;
+                }
+                
+                //Harmonic Number
+                function Harmonic(n, r){
+                    harmonic=0 ;
+                    for(i=1; i<=n; i++){
+                        harmonic += 1/i;
+                    }
+                    return harmonic;
+                }
+                
+                //Fibonacci Number
+                function Fibonacci(n, r){
+                    fibonacci = 0
+                    fib_0 = 0;
+                    fib_1 =1
+                    if(n==0)
+                        fibonacci = fib_0;
+                    if(n==1)
+                        fibonacci = fib_1;
+                    for(i=2; i<=n; i++){
+                        fibonacci = fib_0 + fib_1;
+                        fib_0 = fib_1;
+                        fib_1 = fibonacci;
+                    }
+                    return fibonacci;
+                }
+                
+                //Lucas Number
+                function Lucas(n, r){
+                    lucas = 0;
+                    lucas_0 = 2;
+                    lucas_1 =1;
+                    if(n==0)
+                        lucas = lucas_0;
+                    if(n==1)
+                        lucas = lucas_1;
+                    for(i=2; i<=n; i++){
+                            lucas = lucas_0 + lucas_1;
+                            lucas_0 = lucas_1;
+                            lucas_1 = lucas;
+                    }
+                    return lucas;
+                }     
+                
+                //Eulerian Number
+                function Eulerian(n, r){
+                    xx = 0;
+                    res = 0;
+                    var_in =0;
+                    var_Comb = 0;
+                    var_mm = 0;
+                    res = 0;
+                    if(r==n || r>n || n==0)
+                        res = 0;
+                    else if(r==0)
+                        res = 1;
+                    else
+                        res = (n - r) * Eulerian(n-1, r-1)+  (r + 1) * Eulerian(n-1, r);
+                    return res ;
+                }
+              
+                //Stirling Number of the Second Kind	
+                function Stirling(n, r){
+                    if(n==0 && r==0)
+                        res = 1;
+                    else if((n>0 && r==0)||(n==0 && r>0))
+                        res = 0;
+                    else if(n==r)
+                        res = 1;
+                    else if(r>n)
+                        res = 0;
+                    else
+                        res = Stirling(n-1, r-1) + r * Stirling(n-1, r);
+                    return res;
+                }
+                
+                //
+                function invalid(n, r){
+                    if (parseInt(n) < 0 || isNaN(parseInt(n))){
+                        document.getElementById("n").focus();
+                        return true;
+                    }
+                    else if (parseInt(r) < 0 || isNaN(parseInt(r))){
+                        document.getElementById("r").focus();
+                        return true;
+                    }
+                    return false;
+                }
+            
+                
+                function computeAll(){ 
+                    document.getElementById("resPermutation").innerHTML = "";
+                    document.getElementById("resCombination").innerHTML = "";
+                    document.getElementById("resArrangement").innerHTML = "";
+                    document.getElementById("resSelectrofn").innerHTML = "";
+                    document.getElementById("resCatalan").innerHTML = "";
+                    document.getElementById("resTriangular").innerHTML = "";
+                    document.getElementById("resHarmonic").innerHTML = "";
+                    document.getElementById("resFibonacci").innerHTML = "";
+                    document.getElementById("resLucas").innerHTML = "";
+                    document.getElementById("resEulerian").innerHTML = "";
+                    document.getElementById("resStirling").innerHTML = "";
+                    n = document.getElementById("n").value;
+                    r = document.getElementById("r").value;
+                    if (invalid(n, r)) return;    
+                    clickPerm();
+                    clickComb();
+                    clickArra();
+                    clickSele();
+                    clickCatalan();
+                    clickTriangular();
+                    clickHarmonic();
+                    clickFibonacci();
+                    clickLucas();
+                    clickEulerian();
+                    clickStirling();
+                }
+
+   
+
+                function clickPerm(){ 
+                    document.getElementById("resPermutation").innerHTML = "";
+                    n = document.getElementById("n").value;
+                    r = document.getElementById("r").value;
+                    if (invalid(n, r)) return;
+                    document.getElementById("resPermutation").innerHTML = Perm(n, r);
+                }
+
+                function clickComb(){ 
+                    document.getElementById("resCombination").innerHTML = "";
+                    n = document.getElementById("n").value;
+                    r = document.getElementById("r").value;          
+                    if (invalid(n, r)) return;    
+                    document.getElementById("resCombination").innerHTML = Comb(n, r);
+                }
+
+                function clickArra(){ 
+                    document.getElementById("resArrangement").innerHTML = ""
+                    n = document.getElementById("n").value;
+                    r = document.getElementById("r").value;
+                    if (invalid(n, r)) return;    
+                    document.getElementById("resArrangement").innerHTML = Math.pow(n, r);
+                }
+
+                function clickSele(){
+                    document.getElementById("resSelectrofn").innerHTML = "";
+                    n = parseInt(document.getElementById("n").value);
+                    r = parseInt(document.getElementById("r").value);
+                    if (invalid(n, r)) return;
+                    document.getElementById("resSelectrofn").innerHTML = Comb(n + r - 1, r);
+                }
+                
+                function clickCatalan(){ 
+                    document.getElementById("resCatalan").innerHTML = "";
+                    n = parseInt(document.getElementById("n").value);
+                    r = document.getElementById("r").value
+                    if (invalid(n, r)) return;
+                    document.getElementById("resCatalan").innerHTML = Catalan(n, r);
+                }
+                    
+                function clickTriangular(){ 
+                    document.getElementById("resTriangular").innerHTML = "";
+                    n = parseInt(document.getElementById("n").value);
+                    r = document.getElementById("r").value
+                    if (invalid(n, r)) return;
+                    document.getElementById("resTriangular").innerHTML = Triangular(n, r);
+                }
+                
+                function clickHarmonic(){ 
+                    document.getElementById("resHarmonic").innerHTML = "";
+                    n = parseInt(document.getElementById("n").value);
+                    r = parseInt(document.getElementById("r").value);
+                    if (invalid(n, r)) return;
+                    document.getElementById("resHarmonic").innerHTML = Harmonic(n, r);
+                }
+                
+                function clickFibonacci(){ 
+                    document.getElementById("resFibonacci").innerHTML = "";
+                    n = parseInt(document.getElementById("n").value);
+                    r = parseInt(document.getElementById("r").value);
+                    if (invalid(n, r)) return;
+                    document.getElementById("resFibonacci").innerHTML = Fibonacci(n, r);
+                }
+                
+                function clickLucas(){ 
+                    document.getElementById("resLucas").innerHTML = "";
+                    n = parseInt(document.getElementById("n").value);
+                    r = parseInt(document.getElementById("r").value);
+                    if (invalid(n, r)) return;
+                    document.getElementById("resLucas").innerHTML = Lucas(n, r);
+                }
+                
+                function clickEulerian(){ 
+                    document.getElementById("resEulerian").innerHTML = "";
+                    n = parseInt(document.getElementById("n").value);
+                    r = parseInt(document.getElementById("r").value);
+                    if (invalid(n, r)) return;
+                    document.getElementById("resEulerian").innerHTML = Eulerian(n, r);
+                }
+                
+                function clickStirling(){ 
+                    document.getElementById("resStirling").innerHTML = "";
+                    n = parseInt(document.getElementById("n").value);
+                    r = parseInt(document.getElementById("r").value);
+                    if (invalid(n, r)) return;
+                    document.getElementById("resStirling").innerHTML = Stirling(n, r);
+                }
+            </script>
+        
+         
+            
+            
+            
+            
+        </section>
+
+
+
+        
+    </body>
+    
+</html>
